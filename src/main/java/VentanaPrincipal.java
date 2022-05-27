@@ -131,13 +131,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnBuscar.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.setEnabled(false);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnEditar.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         btnEditar.setText("Editar");
+        btnEditar.setEnabled(false);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setBackground(new java.awt.Color(255, 102, 102));
         btnBorrar.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlProductosLayout = new javax.swing.GroupLayout(pnlProductos);
         pnlProductos.setLayout(pnlProductosLayout);
@@ -254,6 +271,54 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtProveedor.setText(""); txtPrecio.setText(""); txtStock.setText("");
         txtID.requestFocus();
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+            for (int i = 0; i < a; i++) {
+            if(txtID.getText().equals(A[i].getID())){
+               txtNombre.setText(A[i].getNombre());
+               txtMarca.setText(A[i].getMarca());
+               txtProveedor.setText(A[i].getProveedor());
+               txtPrecio.setText(A[i].getPrecio()+"");
+               txtStock.setText(A[i].getStock()+"");
+               pos=i; btnEditar.setEnabled(true); btnBorrar.setEnabled(true); return;
+            }//if
+        }//for
+        showMessageDialog(this,"NC no existe");
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+         int op=javax.swing.JOptionPane.showConfirmDialog(this, "Seguro ?");
+         
+         if(op==0){
+             m.removeRow(pos);
+             if(pos<a-1){
+                 for (int i = pos; i < a; i++) {
+                     A[i]=A[i+1];
+                 }
+             }
+             btnBorrar.setEnabled(false);
+         }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+         int op=javax.swing.JOptionPane.showConfirmDialog(this, "¿Estás seguro que quieres editar este producto?");
+         
+         if(op==0){
+             m.setValueAt(txtID.getText(), pos, 0);
+             m.setValueAt(txtNombre.getText(), pos, 1);
+             m.setValueAt(txtMarca.getText(), pos, 2);
+             m.setValueAt(txtProveedor.getText(), pos, 3);
+             m.setValueAt(txtPrecio.getText(), pos, 4);
+             m.setValueAt(txtStock.getText(), pos, 5);
+             
+             double p=Double.parseDouble(txtPrecio.getText());
+             int s=Integer.parseInt(txtStock.getText());
+             A[pos]=new Producto(txtID.getText(), txtNombre.getText(),txtMarca.getText(),
+             txtProveedor.getText(),p,s);
+             
+             btnEditar.setEnabled(false);
+         }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
         private void llenarTabla(){
         for (int i = 0; i < a; i++) {
