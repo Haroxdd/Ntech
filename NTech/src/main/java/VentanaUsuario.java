@@ -1,5 +1,4 @@
 
-import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import javax.swing.JFrame;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -52,20 +51,10 @@ public class VentanaUsuario extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
-        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtUsuarioKeyPressed(evt);
-            }
-        });
 
         pswContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pswContrasenaActionPerformed(evt);
-            }
-        });
-        pswContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                pswContrasenaKeyPressed(evt);
             }
         });
 
@@ -157,16 +146,6 @@ public class VentanaUsuario extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)   
-            pswContrasena.requestFocus();
-    }//GEN-LAST:event_txtUsuarioKeyPressed
-
-    private void pswContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswContrasenaKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-            btnIngresar.doClick();
-    }//GEN-LAST:event_pswContrasenaKeyPressed
-    
     /**
      * @param args the command line arguments
      */
